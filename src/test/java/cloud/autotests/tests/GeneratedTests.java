@@ -7,7 +7,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.visible;
+//import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.SetValueOptions.withText;
+import static com.codeborne.selenide.files.DownloadActions.click;
 import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -18,15 +21,15 @@ public class GeneratedTests extends TestBase {
     @DisplayName("Login modal form should appear on main page")
     void generatedTest() {
         step("Open https://habr.com/", () -> {
-            open("https://habr.com/");
+            open("https://habr.com/ru/feed/");
         });
 
         step("Click on Profile button", () -> {
-            $(".tm-header-user-menu__item tm-header-user-menu__login").click();
+            $x("//a[contains(text(),'Войти')]").click();
         });
 
         step("Login modal should be visible", () -> {
-            $("[text='Вход']").shouldBe(visible);
+            $x("//*[contains(text(),'Вход')]").shouldBe(visible);
         });
     }
 
