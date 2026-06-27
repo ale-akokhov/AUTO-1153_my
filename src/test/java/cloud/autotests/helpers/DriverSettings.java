@@ -11,6 +11,10 @@ import java.util.Map;
 public class DriverSettings {
 
     public static void configure() {
+
+        System.setProperty("java.net.useSystemProxies", "true");
+        System.setProperty("jdk.http.auth.tunneling.disabledSchemes", "");
+        System.setProperty("jdk.http.auth.proxying.disabledSchemes", "");
         // SSL errors
         System.setProperty("selenide.ignore.https.errors", "true");
 
@@ -18,8 +22,8 @@ public class DriverSettings {
         Configuration.browser = Project.config.browser();
         Configuration.browserVersion = Project.config.browserVersion();
         Configuration.browserSize = Project.config.browserSize();
-//        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
-        Configuration.remote = "https://localhost:4444/wd/hub";
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+//        Configuration.remote = "https://localhost:4444/wd/hub";
 
         // Настройки браузера
         ChromeOptions chromeOptions = new ChromeOptions();
