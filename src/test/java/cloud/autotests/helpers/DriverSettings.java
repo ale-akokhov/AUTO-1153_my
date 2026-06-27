@@ -15,8 +15,8 @@ public class DriverSettings {
         Configuration.browserVersion = Project.config.browserVersion();
         Configuration.browserSize = Project.config.browserSize();
 //        Configuration.baseUrl = App.config.webUrl();
-//        Configuration.remote = "https://user:1234@selenoid.autotests.cloud/wd/hub";
-        Configuration.remote = "http://https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.remote = "https://user:1234@selenoid.autotests.cloud/wd/hub";
+//        Configuration.remote = "http://host.docker.internal:4444/wd/hub";
 
 
 
