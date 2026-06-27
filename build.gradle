@@ -37,17 +37,17 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.11.4'
 }
 
-//tasks.withType(Test) {
-//    systemProperties(System.getProperties())
-//    useJUnitPlatform()
-//    systemProperty("allure.results.directory", "build/allure-results")
-//    testLogging {
-//        lifecycle {
-//            events "started", "skipped", "standard_error", "standard_out"
-//            exceptionFormat "short"
-//        }
-//    }
-//}
+tasks.withType(Test) {
+    systemProperties(System.getProperties())
+    useJUnitPlatform()
+    systemProperty("allure.results.directory", "build/allure-results")
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
