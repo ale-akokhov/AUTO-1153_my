@@ -11,40 +11,44 @@ import java.util.Map;
 public class DriverSettings {
 
     public static void configure() {
+        // SSL errors
+        System.setProperty("selenide.ignore.https.errors", "true");
+
+        // Основные настройки
         Configuration.browser = Project.config.browser();
         Configuration.browserVersion = Project.config.browserVersion();
         Configuration.browserSize = Project.config.browserSize();
-//        Configuration.baseUrl = App.config.webUrl();
-        System.setProperty("selenide.ignore.https.errors", "true");
-        Configuration.remote = "https://user:1234@selenoid.autotests.cloud/wd/hub";
-        Configuration.browser = "chrome";
-        Configuration.browserVersion = "146.0";
-//        Configuration.remote = "http://host.docker.internal:4444/wd/hub";
+//        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.remote = "https://localhost:4444/wd/hub";
 
-
-
-        DesiredCapabilities capabilities = new DesiredCapabilities();
+        // Настройки браузера
         ChromeOptions chromeOptions = new ChromeOptions();
-
         chromeOptions.addArguments("--no-sandbox");
         chromeOptions.addArguments("--disable-infobars");
         chromeOptions.addArguments("--disable-popup-blocking");
         chromeOptions.addArguments("--disable-notifications");
-        chromeOptions.addArguments("--lang=en-en");
+        chromeOptions.addArguments("--lang=en");
 
-        if (Project.isWebMobile()) { // for chrome only
-            Map<String, Object> mobileDevice = new HashMap<>();
-            mobileDevice.put("deviceName", Project.config.browserMobileView());
-            chromeOptions.setExperimentalOption("mobileEmulation", mobileDevice);
-        }
+        // Selenoid опции
+        Map<String, Object> selenoidOptions = new HashMap<>();
+        selenoidOptions.put("enableVNC", true);
+        selenoidOptions.put("enableVideo", true);
+        selenoidOptions.put("screenResolution", "1920x1080x24");
 
-        if (Project.isRemoteWebDriver()) {
-            capabilities.setCapability("enableVNC", true);
-            capabilities.setCapability("enableVideo", true);
-            Configuration.remote = Project.config.remoteDriverUrl();
-        }
-
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("browserName", "chrome");
+        capabilities.setCapability("browserVersion", "146.0");
+        capabilities.setCapability("selenoid:options", selenoidOptions);
         capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
+
         Configuration.browserCapabilities = capabilities;
+
+        // Отладка
+        System.out.println("=== DRIVER SETTINGS ===");
+        System.out.println("Remote URL: " + Configuration.remote);
+        System.out.println("Browser: " + Configuration.browser);
+        System.out.println("Version: " + Configuration.browserVersion);
+        System.out.println("Capabilities: " + Configuration.browserCapabilities);
+        System.out.println("========================");
     }
 }

@@ -27,7 +27,7 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.11.4')
     testImplementation(
             'org.aspectj:aspectjweaver:1.9.22.1',
-            'com.codeborne:selenide:7.16.0',
+            'com.codeborne:selenide:7.16.2',
             'io.qameta.allure:allure-selenide:2.29.1',
             'org.aeonbits.owner:owner:1.0.12',
             'org.assertj:assertj-core:3.27.3',
