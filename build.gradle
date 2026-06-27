@@ -58,6 +58,7 @@ tasks.withType(JavaCompile) {
 tasks.withType(Test) {
     systemProperties(System.getProperties())
     useJUnitPlatform()
+    systemProperty("allure.results.directory", "build/allure-results")
 
     if (System.getProperty("threads") != null) {
         systemProperties += [
