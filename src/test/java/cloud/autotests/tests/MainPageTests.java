@@ -35,11 +35,11 @@ public class MainPageTests extends TestBase {
     @Test
     @DisplayName("Page title should have header text")
     void titleTest() {
-        step("Open url 'https://habr.com/'", () ->
-            open("https://habr.com/"));
+        step("Open url 'https://habr.com/ru/feed/'", () ->
+            open("https://habr.com/ru/feed/"));
 
-        step("Page title should have text 'All posts in a row / Habr'", () -> {
-            String expectedTitle = "All posts in a row / Habr";
+        step("Page title should have text 'Публикации / Моя лента / Хабр'", () -> {
+            String expectedTitle = "Публикации / Моя лента / Хабр";
             String actualTitle = title();
 
             assertThat(actualTitle).isEqualTo(expectedTitle);
