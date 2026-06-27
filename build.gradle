@@ -39,6 +39,7 @@ dependencies {
 
 tasks.withType(Test) {
     systemProperties(System.getProperties())
+    systemProperty("selenide.ignore.https.errors", "true")
     useJUnitPlatform()
     systemProperty("allure.results.directory", "build/allure-results")
     testLogging {

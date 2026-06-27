@@ -15,7 +15,10 @@ public class DriverSettings {
         Configuration.browserVersion = Project.config.browserVersion();
         Configuration.browserSize = Project.config.browserSize();
 //        Configuration.baseUrl = App.config.webUrl();
+        System.setProperty("selenide.ignore.https.errors", "true");
         Configuration.remote = "https://user:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.browser = "chrome";
+        Configuration.browserVersion = "146.0";
 //        Configuration.remote = "http://host.docker.internal:4444/wd/hub";
 
 
